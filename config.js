@@ -4,6 +4,7 @@ window.CATALOG_CONFIG = {
   locale: "es-CO",
   currency: "COP",
   minimumOrder: 0,
-  freeShippingThreshold: 999999999,
+  freeShipping: true,
+  freeShippingThreshold: 0,
   pageSize: 12
 };

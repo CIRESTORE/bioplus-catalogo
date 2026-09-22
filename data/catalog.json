@@ -5,7 +5,10 @@
     "product_count": 26,
     "category_count": 12,
     "currency": "COP",
-    "generated_at": "2026-09-22"
+    "generated_at": "2026-09-22",
+    "promotion": "2x1",
+    "free_shipping": true,
+    "offer_source": "Shopify/Releasit"
   },
   "categories": [
     "Bienestar cardiovascular",
@@ -32,6 +35,29 @@
       "featured": true,
       "images": [
         "assets/products/hiperten-2x1.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 84900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 105300,
+          "badge": "Ahorra 40% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 199900,
+          "badge": "Mejor opción"
+        }
       ]
     },
     {
@@ -44,6 +70,22 @@
       "featured": true,
       "images": [
         "assets/products/ceprostz-2x1.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 95300,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 119900,
+          "badge": "Ahorra 45%"
+        }
       ]
     },
     {
@@ -58,6 +100,29 @@
         "assets/products/vitacerebrina-premium-2x1.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i8_f66a88ba-9d8e-45b3-80f5-54ddec24a70e.webp?v=1765345172",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i6_3e26050c-2de8-4372-b721-878f36e7e8e4.webp?v=1765345172"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 84900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 105300,
+          "badge": "Ahorra 40% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 199900,
+          "badge": "Mejor opción"
+        }
       ]
     },
     {
@@ -72,6 +137,29 @@
         "assets/products/chancapiedra-bioplus-500-ml-2x1.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i5.webp?v=1763783679",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i3_2_c5cc6492-9db2-4970-9971-cb53306d313a.webp?v=1763783679"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 84900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 105300,
+          "badge": "Ahorra 40% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 199900,
+          "badge": "Mejor opción"
+        }
       ]
     },
     {
@@ -84,6 +172,29 @@
       "featured": true,
       "images": [
         "assets/products/cranberry-premium.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 111476,
+          "badge": "Ahorra 40% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 213063,
+          "badge": "Mejor opción"
+        }
       ]
     },
     {
@@ -96,6 +207,29 @@
       "featured": true,
       "images": [
         "assets/products/cido-rico-500-ml-2x1.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 111476,
+          "badge": "Ahorra 40% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 213063,
+          "badge": "Mejor opción"
+        }
       ]
     },
     {
@@ -109,6 +243,22 @@
       "images": [
         "assets/products/colon-jarabe-500-ml-2x1.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i14_1.webp?v=1764219598"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 79900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 99076,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -122,6 +272,22 @@
       "images": [
         "assets/products/rompequistes-500-ml-2x1.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/IMAGEN_2.webp?v=1764917974"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 79900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 99076,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -134,6 +300,15 @@
       "featured": false,
       "images": [
         "assets/products/vitacerebrina-premium-1-litro.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 80000,
+          "badge": "Oferta 2x1"
+        }
       ]
     },
     {
@@ -146,6 +321,22 @@
       "featured": false,
       "images": [
         "assets/products/higadosan-2x1.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 111476,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -159,6 +350,22 @@
       "images": [
         "assets/products/vitacer-2x1.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i7_2_75d5c485-e01f-4268-9b99-bb7ef6a34624.webp?v=1764306739"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 116870,
+          "badge": "Ahorra 35% adicional"
+        }
       ]
     },
     {
@@ -171,6 +378,29 @@
       "featured": true,
       "images": [
         "assets/products/propolmiel.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 111476,
+          "badge": "Ahorra 40% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 213063,
+          "badge": "Mejor opción"
+        }
       ]
     },
     {
@@ -183,6 +413,15 @@
       "featured": false,
       "images": [
         "assets/products/h-ten-natural-2x1.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        }
       ]
     },
     {
@@ -195,6 +434,29 @@
       "featured": true,
       "images": [
         "assets/products/clorofila-premium.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 111476,
+          "badge": "Ahorra 40% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 213063,
+          "badge": "Mejor opción"
+        }
       ]
     },
     {
@@ -207,6 +469,22 @@
       "featured": false,
       "images": [
         "assets/products/anticolesterol-2x1.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 79900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 99076,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -220,6 +498,15 @@
       "images": [
         "assets/products/moringa-con-yac-n.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i11_901acf92-f142-4948-bad4-35b92d19a2dd.webp?v=1769294182"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 79900,
+          "badge": "Oferta 2x1"
+        }
       ]
     },
     {
@@ -232,6 +519,22 @@
       "featured": false,
       "images": [
         "assets/products/fungi-fin-2x1.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 84900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 105300,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -245,6 +548,22 @@
       "images": [
         "assets/products/batido-verde-2x1.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i11_4.webp?v=1764744371"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 116870,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -257,6 +576,29 @@
       "featured": false,
       "images": [
         "assets/products/bondis.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 99900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 129900,
+          "badge": "Ahorra 25% adicional"
+        },
+        {
+          "id": "6-units",
+          "label": "Paga 4 · Lleva 6",
+          "units": 6,
+          "price": 239900,
+          "badge": "Mejor precio por unidad"
+        }
       ]
     },
     {
@@ -270,6 +612,22 @@
       "images": [
         "assets/products/col-geno-hidrolizado-2x1-uva.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i4_2a193a75-1e15-42a2-8718-10d0b0698b16.webp?v=1764057085"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 109900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 148365,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -283,6 +641,22 @@
       "images": [
         "assets/products/col-geno-hidrolizado-2x1-uva.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i11_cae7e248-7391-475d-8ffd-3f1670812545.webp?v=1764057085"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 109900,
+          "badge": "Oferta 2x1"
+        },
+        {
+          "id": "3-units",
+          "label": "Paga 2 · Lleva 3",
+          "units": 3,
+          "price": 148365,
+          "badge": "Ahorra 40% adicional"
+        }
       ]
     },
     {
@@ -295,6 +669,15 @@
       "featured": false,
       "images": [
         "assets/products/k-lostro-bovino.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 89900,
+          "badge": "Oferta 2x1"
+        }
       ]
     },
     {
@@ -307,6 +690,15 @@
       "featured": false,
       "images": [
         "assets/products/rellenador-de-entradas-2x1-negro.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 69900,
+          "badge": "Oferta 2x1"
+        }
       ]
     },
     {
@@ -319,6 +711,15 @@
       "featured": false,
       "images": [
         "assets/products/rellenador-de-entradas-2x1-negro.webp"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 69900,
+          "badge": "Oferta 2x1"
+        }
       ]
     },
     {
@@ -332,6 +733,15 @@
       "images": [
         "assets/products/corrector-para-entradas-2x1-negro.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i5.1.webp?v=1763526718"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 69900,
+          "badge": "Oferta 2x1"
+        }
       ]
     },
     {
@@ -345,6 +755,15 @@
       "images": [
         "assets/products/corrector-para-entradas-2x1-negro.webp",
         "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i2.webp?v=1763526723"
+      ],
+      "offers": [
+        {
+          "id": "2-units",
+          "label": "Paga 1 · Lleva 2",
+          "units": 2,
+          "price": 69900,
+          "badge": "Oferta 2x1"
+        }
       ]
     }
   ]
