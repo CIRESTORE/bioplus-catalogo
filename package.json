@@ -1,0 +1,12 @@
+{
+  "name": "bioplus-catalog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test:e2e": "node tests/e2e.js",
+    "serve": "python3 -m http.server 4173 --directory public"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.58.2"
+  }
+}

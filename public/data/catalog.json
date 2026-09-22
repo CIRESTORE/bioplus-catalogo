@@ -1,0 +1,351 @@
+{
+  "meta": {
+    "brand": "BIO PLUS",
+    "source": "Shopify BIO PLUS",
+    "product_count": 26,
+    "category_count": 12,
+    "currency": "COP",
+    "generated_at": "2026-09-22"
+  },
+  "categories": [
+    "Bienestar cardiovascular",
+    "Bienestar masculino",
+    "Mente y memoria",
+    "Riñones y vías urinarias",
+    "Bienestar integral",
+    "Articulaciones",
+    "Digestión",
+    "Bienestar femenino",
+    "Hígado",
+    "Energía y defensas",
+    "Cuidado personal",
+    "Piel, cabello y articulaciones"
+  ],
+  "products": [
+    {
+      "id": "7868822323286",
+      "name": "HIPERTEN® 2x1",
+      "sku": "2018533",
+      "category": "Bienestar cardiovascular",
+      "description": "Bebida natural presentada en oferta 2x1 para complementar una rutina de bienestar cardiovascular.",
+      "price": 84900,
+      "featured": true,
+      "images": [
+        "assets/products/hiperten-2x1.webp"
+      ]
+    },
+    {
+      "id": "7839227674710",
+      "name": "CEPROSTZ 2x1",
+      "sku": "2122901",
+      "category": "Bienestar masculino",
+      "description": "Fórmula natural orientada al bienestar masculino, disponible en presentación promocional 2x1.",
+      "price": 95300,
+      "featured": true,
+      "images": [
+        "assets/products/ceprostz-2x1.webp"
+      ]
+    },
+    {
+      "id": "7732892827734",
+      "name": "VITACEREBRINA® Premium 2x1",
+      "sku": "2023669",
+      "category": "Mente y memoria",
+      "description": "Suplemento líquido para acompañar hábitos de concentración, memoria y claridad mental.",
+      "price": 84900,
+      "featured": true,
+      "images": [
+        "assets/products/vitacerebrina-premium-2x1.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i8_f66a88ba-9d8e-45b3-80f5-54ddec24a70e.webp?v=1765345172",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i6_3e26050c-2de8-4372-b721-878f36e7e8e4.webp?v=1765345172"
+      ]
+    },
+    {
+      "id": "7715896655958",
+      "name": "Chancapiedra BioPlus+ 500 ml 2x1",
+      "sku": "1174225",
+      "category": "Riñones y vías urinarias",
+      "description": "Extracto líquido de chancapiedra en presentación de 500 ml y oferta 2x1.",
+      "price": 84900,
+      "featured": true,
+      "images": [
+        "assets/products/chancapiedra-bioplus-500-ml-2x1.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i5.webp?v=1763783679",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i3_2_c5cc6492-9db2-4970-9971-cb53306d313a.webp?v=1763783679"
+      ]
+    },
+    {
+      "id": "7864616616022",
+      "name": "Cranberry Premium®",
+      "sku": "2145407",
+      "category": "Riñones y vías urinarias",
+      "description": "Bebida de cranberry, arándano y flor de Jamaica para complementar tu rutina diaria de bienestar.",
+      "price": 89900,
+      "featured": true,
+      "images": [
+        "assets/products/cranberry-premium.webp"
+      ]
+    },
+    {
+      "id": "7881237528662",
+      "name": "Ácido Úrico 500 ml 2x1",
+      "sku": "2030345",
+      "category": "Articulaciones",
+      "description": "Suplemento líquido concentrado en presentación de 500 ml y oferta 2x1.",
+      "price": 89900,
+      "featured": true,
+      "images": [
+        "assets/products/cido-rico-500-ml-2x1.webp"
+      ]
+    },
+    {
+      "id": "7719022723158",
+      "name": "COLON Jarabe 500 ml 2x1",
+      "sku": "2009876",
+      "category": "Digestión",
+      "description": "Bebida natural en presentación de 500 ml para acompañar una rutina de bienestar digestivo.",
+      "price": 79900,
+      "featured": false,
+      "images": [
+        "assets/products/colon-jarabe-500-ml-2x1.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i14_1.webp?v=1764219598"
+      ]
+    },
+    {
+      "id": "7715825221718",
+      "name": "ROMPEQUISTES 500 ml 2x1",
+      "sku": "1685042",
+      "category": "Bienestar femenino",
+      "description": "Fórmula líquida natural orientada al bienestar femenino, disponible en presentación 2x1.",
+      "price": 79900,
+      "featured": false,
+      "images": [
+        "assets/products/rompequistes-500-ml-2x1.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/IMAGEN_2.webp?v=1764917974"
+      ]
+    },
+    {
+      "id": "7842590785622",
+      "name": "VITACEREBRINA Premium 1 litro",
+      "sku": "2128723",
+      "category": "Mente y memoria",
+      "description": "Presentación de un litro para acompañar hábitos de memoria, concentración y bienestar mental.",
+      "price": 80000,
+      "featured": false,
+      "images": [
+        "assets/products/vitacerebrina-premium-1-litro.webp"
+      ]
+    },
+    {
+      "id": "7750885376086",
+      "name": "Higadosan 2x1",
+      "sku": "7750885376086",
+      "category": "Hígado",
+      "description": "Bebida natural para complementar hábitos de digestión, energía y cuidado hepático.",
+      "price": 89900,
+      "featured": false,
+      "images": [
+        "assets/products/higadosan-2x1.webp"
+      ]
+    },
+    {
+      "id": "7723080876118",
+      "name": "VITACER® 2x1",
+      "sku": "2114946",
+      "category": "Energía y defensas",
+      "description": "Fórmula líquida para acompañar la energía, el vigor y la vitalidad diaria.",
+      "price": 89900,
+      "featured": true,
+      "images": [
+        "assets/products/vitacer-2x1.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i7_2_75d5c485-e01f-4268-9b99-bb7ef6a34624.webp?v=1764306739"
+      ]
+    },
+    {
+      "id": "8002531164246",
+      "name": "Propolmiel®",
+      "sku": "2233724",
+      "category": "Energía y defensas",
+      "description": "Preparación con propóleo y miel para complementar el bienestar cotidiano.",
+      "price": 89900,
+      "featured": true,
+      "images": [
+        "assets/products/propolmiel.webp"
+      ]
+    },
+    {
+      "id": "7744085491798",
+      "name": "H-TEN Natural 2x1",
+      "sku": "7744085491798",
+      "category": "Bienestar cardiovascular",
+      "description": "Bebida natural orientada al bienestar cardiovascular, disponible en promoción 2x1.",
+      "price": 89900,
+      "featured": false,
+      "images": [
+        "assets/products/h-ten-natural-2x1.webp"
+      ]
+    },
+    {
+      "id": "7898775552086",
+      "name": "Clorofila Premium®",
+      "sku": "7898775552086",
+      "category": "Bienestar integral",
+      "description": "Suplemento líquido con clorofilina, vitaminas y minerales para complementar tu bienestar diario.",
+      "price": 89900,
+      "featured": true,
+      "images": [
+        "assets/products/clorofila-premium.webp"
+      ]
+    },
+    {
+      "id": "7723852398678",
+      "name": "ANTICOLESTEROL® 2x1",
+      "sku": "7723852398678",
+      "category": "Bienestar cardiovascular",
+      "description": "Fórmula natural para complementar hábitos de bienestar cardiovascular.",
+      "price": 79900,
+      "featured": false,
+      "images": [
+        "assets/products/anticolesterol-2x1.webp"
+      ]
+    },
+    {
+      "id": "7766978396246",
+      "name": "Moringa con Yacón",
+      "sku": "7766978396246",
+      "category": "Bienestar integral",
+      "description": "Bebida con moringa y yacón para complementar una rutina equilibrada de nutrición y bienestar.",
+      "price": 79900,
+      "featured": false,
+      "images": [
+        "assets/products/moringa-con-yac-n.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i11_901acf92-f142-4948-bad4-35b92d19a2dd.webp?v=1769294182"
+      ]
+    },
+    {
+      "id": "7845394612310",
+      "name": "Fungi-Fin 2x1",
+      "sku": "7845394612310",
+      "category": "Cuidado personal",
+      "description": "Producto de cuidado personal diseñado para mejorar la apariencia de las uñas.",
+      "price": 84900,
+      "featured": false,
+      "images": [
+        "assets/products/fungi-fin-2x1.webp"
+      ]
+    },
+    {
+      "id": "7724252004438",
+      "name": "Batido Verde® 2x1",
+      "sku": "7724252004438",
+      "category": "Bienestar integral",
+      "description": "Batido líquido con ingredientes vegetales para sumar sabor, energía y bienestar a tu día.",
+      "price": 89900,
+      "featured": true,
+      "images": [
+        "assets/products/batido-verde-2x1.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i11_4.webp?v=1764744371"
+      ]
+    },
+    {
+      "id": "7849648783446",
+      "name": "BONDIS",
+      "sku": "7849648783446",
+      "category": "Articulaciones",
+      "description": "Fórmula líquida de BIO PLUS para complementar una rutina de movilidad y bienestar articular.",
+      "price": 99900,
+      "featured": false,
+      "images": [
+        "assets/products/bondis.webp"
+      ]
+    },
+    {
+      "id": "7717556191318-uva",
+      "name": "Colágeno Hidrolizado 2x1 · Uva",
+      "sku": "7717556191318-UVA",
+      "category": "Piel, cabello y articulaciones",
+      "description": "Colágeno hidrolizado de 700 g por unidad en sabor uva, presentado en promoción 2x1.",
+      "price": 109900,
+      "featured": true,
+      "images": [
+        "assets/products/col-geno-hidrolizado-2x1-uva.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i4_2a193a75-1e15-42a2-8718-10d0b0698b16.webp?v=1764057085"
+      ]
+    },
+    {
+      "id": "7717556191318-vainilla",
+      "name": "Colágeno Hidrolizado 2x1 · Vainilla",
+      "sku": "7717556191318-VAINILLA",
+      "category": "Piel, cabello y articulaciones",
+      "description": "Colágeno hidrolizado de 700 g por unidad en sabor vainilla, presentado en promoción 2x1.",
+      "price": 109900,
+      "featured": false,
+      "images": [
+        "assets/products/col-geno-hidrolizado-2x1-uva.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i11_cae7e248-7391-475d-8ffd-3f1670812545.webp?v=1764057085"
+      ]
+    },
+    {
+      "id": "7765508718678",
+      "name": "K-LOSTRO® Bovino",
+      "sku": "7765508718678",
+      "category": "Energía y defensas",
+      "description": "Suplemento de calostro bovino para complementar una rutina de energía y defensas.",
+      "price": 89900,
+      "featured": false,
+      "images": [
+        "assets/products/k-lostro-bovino.webp"
+      ]
+    },
+    {
+      "id": "7713501249622-negro",
+      "name": "Rellenador de entradas 2x1 · Negro",
+      "sku": "7713501249622-NEGRO",
+      "category": "Cuidado personal",
+      "description": "Rellenador capilar de aplicación rápida en tono negro, presentado en promoción 2x1.",
+      "price": 69900,
+      "featured": false,
+      "images": [
+        "assets/products/rellenador-de-entradas-2x1-negro.webp"
+      ]
+    },
+    {
+      "id": "7713501249622-castano",
+      "name": "Rellenador de entradas 2x1 · Castaño",
+      "sku": "7713501249622-CASTANO",
+      "category": "Cuidado personal",
+      "description": "Rellenador capilar de aplicación rápida en tono castaño, presentado en promoción 2x1.",
+      "price": 69900,
+      "featured": false,
+      "images": [
+        "assets/products/rellenador-de-entradas-2x1-negro.webp"
+      ]
+    },
+    {
+      "id": "7712060244054-negro",
+      "name": "Corrector para entradas 2x1 · Negro",
+      "sku": "ME-013",
+      "category": "Cuidado personal",
+      "description": "Corrector capilar para entradas y canas en tono negro, de aplicación rápida y acabado discreto.",
+      "price": 69900,
+      "featured": false,
+      "images": [
+        "assets/products/corrector-para-entradas-2x1-negro.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i5.1.webp?v=1763526718"
+      ]
+    },
+    {
+      "id": "7712060244054-castano",
+      "name": "Corrector para entradas 2x1 · Castaño",
+      "sku": "ME-014",
+      "category": "Cuidado personal",
+      "description": "Corrector capilar para entradas y canas en tono castaño, de aplicación rápida y acabado discreto.",
+      "price": 69900,
+      "featured": false,
+      "images": [
+        "assets/products/corrector-para-entradas-2x1-negro.webp",
+        "https://cdn.shopify.com/s/files/1/0688/4828/7830/files/i2.webp?v=1763526723"
+      ]
+    }
+  ]
+}
