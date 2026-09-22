@@ -40,11 +40,21 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
     await page.locator('#cartTrigger').click();
     await page.waitForSelector('#cartDrawer.open');
     assert(await page.locator('.cart-item').count() === 1, 'El carrito no muestra el producto agregado');
-    assert(await page.locator('#checkoutButton').isDisabled(), 'Pedidos debe seguir deshabilitado hasta configurar WhatsApp oficial');
+    assert(!(await page.locator('#checkoutButton').isDisabled()), 'El pedido debe habilitarse con el WhatsApp oficial configurado');
     await page.screenshot({ path: path.join(artifacts, 'desktop-cart.png'), fullPage: false });
+    await page.locator('#checkoutButton').click();
+    await page.waitForSelector('#orderModal:not([hidden])');
+    await page.locator('#customerName').fill('Cliente de prueba');
+    await page.locator('#customerPhone').fill('3001234567');
+    await page.locator('#customerDepartment').fill('Valle del Cauca');
+    await page.locator('#customerCity').fill('Cali');
+    await page.locator('#customerAddress').fill('Calle 1 # 2-3');
+    await page.evaluate(() => { window.__openedUrl = ''; window.open = url => { window.__openedUrl = String(url); }; });
+    await page.locator('#orderSubmit').click();
+    const orderUrl = await page.evaluate(() => window.__openedUrl);
+    assert(orderUrl.startsWith('https://wa.me/573013163588?text='), `El pedido no apunta al WhatsApp oficial: ${orderUrl}`);
+    await page.locator('#orderClose').click();
 
-    await page.locator('#cartClose').click();
-    await page.locator('#clearFilters').count();
     await page.locator('#searchInput').fill('');
     await page.waitForTimeout(250);
     await page.locator('.product-title-button').first().click();

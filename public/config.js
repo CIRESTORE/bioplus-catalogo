@@ -1,6 +1,6 @@
 window.CATALOG_CONFIG = {
   brand: "BIO PLUS",
-  whatsapp: "",
+  whatsapp: "573013163588",
   locale: "es-CO",
   currency: "COP",
   minimumOrder: 0,
