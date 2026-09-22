@@ -13,6 +13,7 @@
     visible: Number(CONFIG.pageSize || 24),
     cart: loadCart(),
     modalProduct: null,
+    modalOfferId: null,
     toastTimer: null
   };
 
@@ -41,10 +42,6 @@
     cartTotal: $("#cartTotal"),
     checkoutButton: $("#checkoutButton"),
     checkoutNote: $("#checkoutNote"),
-    shippingProgress: $("#shippingProgress"),
-    shippingProgressFill: $("#shippingProgress .progress-fill"),
-    progressStatus: $("#progressStatus"),
-    freeShippingBadge: $("#freeShippingBadge"),
     productModal: $("#productModal"),
     modalClose: $("#modalClose"),
     modalImage: $("#modalImage"),
@@ -55,6 +52,9 @@
     modalPrice: $("#modalPrice"),
     modalTerms: $("#modalTerms"),
     modalDescription: $("#modalDescription"),
+    modalOffers: $("#modalOffers"),
+    modalImageBadge: $("#modalImageBadge"),
+    modalOfferSummary: $("#modalOfferSummary"),
     modalQuantity: $("#modalQuantity"),
     modalMinus: $("#modalMinus"),
     modalPlus: $("#modalPlus"),
@@ -91,6 +91,40 @@
       currency: CONFIG.currency || "COP",
       maximumFractionDigits: 0
     }).format(Number(value || 0));
+  }
+
+  function offersFor(product) {
+    if (Array.isArray(product?.offers) && product.offers.length) return product.offers;
+    return [{ id: "2-units", label: "Paga 1 · Lleva 2", units: 2, price: Number(product?.price || 0), badge: "Oferta 2x1" }];
+  }
+
+  function baseOffer(product) {
+    return offersFor(product)[0];
+  }
+
+  function cartKey(productId, offerId) {
+    return `${productId}::${offerId}`;
+  }
+
+  function parseCartKey(key) {
+    const separator = key.lastIndexOf("::");
+    return separator < 0
+      ? { productId: key, offerId: "2-units" }
+      : { productId: key.slice(0, separator), offerId: key.slice(separator + 2) };
+  }
+
+  function migrateCart() {
+    const migrated = {};
+    Object.entries(state.cart).forEach(([key, quantity]) => {
+      const { productId, offerId } = parseCartKey(key);
+      const product = state.products.find((item) => item.id === productId);
+      if (!product) return;
+      const validOffer = offersFor(product).find((item) => item.id === offerId) || baseOffer(product);
+      const nextKey = cartKey(product.id, validOffer.id);
+      migrated[nextKey] = Math.min(99, Number(migrated[nextKey] || 0) + Math.max(0, Number(quantity || 0)));
+    });
+    state.cart = migrated;
+    saveCart();
   }
 
   function populateDepartments() {
@@ -226,28 +260,30 @@
     const article = document.createElement("article");
     article.className = "product-card";
     article.dataset.productId = product.id;
+    const offer = baseOffer(product);
 
     const imageButton = createButton("", "product-image-button", () => openProduct(product.id));
     imageButton.setAttribute("aria-label", `Ver ${product.name}`);
     const image = document.createElement("img");
     image.src = imageOrPlaceholder(product);
-    image.alt = product.name;
+    image.alt = `${product.name}, oferta de dos unidades`;
     image.loading = "lazy";
     image.decoding = "async";
     imageButton.append(image);
 
-    if (product.featured) {
-      const badge = document.createElement("span");
-      badge.className = "product-badge";
-      badge.textContent = "Destacado";
-      imageButton.append(badge);
-    }
+    const badge = document.createElement("span");
+    badge.className = "product-badge promotion-badge";
+    badge.textContent = "PAGA 1 · LLEVA 2";
+    const shipping = document.createElement("span");
+    shipping.className = "shipping-badge";
+    shipping.textContent = "ENVÍO GRATIS";
+    imageButton.append(badge, shipping);
 
     const quickAdd = createButton("＋", "quick-add", (event) => {
       event.stopPropagation();
-      addToCart(product.id, 1);
+      addToCart(product.id, offer.id, 1);
     });
-    quickAdd.setAttribute("aria-label", `Agregar ${product.name} al carrito`);
+    quickAdd.setAttribute("aria-label", `Agregar oferta 2x1 de ${product.name} al carrito`);
     imageButton.append(quickAdd);
 
     const body = document.createElement("div");
@@ -256,6 +292,9 @@
     category.className = "product-category";
     category.textContent = product.category;
     const title = createButton(product.name, "product-title-button", () => openProduct(product.id));
+    const offerLine = document.createElement("p");
+    offerLine.className = "product-offer-line";
+    offerLine.textContent = offersFor(product).length > 1 ? "2x1 + ofertas por cantidad" : "2x1 · Recibes 2 unidades";
     const sku = document.createElement("p");
     sku.className = "product-sku";
     sku.textContent = `Ref. ${product.sku}`;
@@ -266,12 +305,17 @@
     }
     const bottom = document.createElement("div");
     bottom.className = "product-bottom";
+    const priceBox = document.createElement("div");
+    priceBox.className = "product-price-box";
     const price = document.createElement("strong");
     price.className = "product-price";
-    price.textContent = formatPrice(product.price);
-    const details = createButton("Ver detalles", "view-link", () => openProduct(product.id));
-    bottom.append(price, details);
-    body.append(category, title, sku);
+    price.textContent = formatPrice(offer.price);
+    const priceNote = document.createElement("small");
+    priceNote.textContent = "Precio total 2x1";
+    priceBox.append(price, priceNote);
+    const details = createButton("Elegir oferta", "view-link", () => openProduct(product.id));
+    bottom.append(priceBox, details);
+    body.append(category, title, offerLine, sku);
     if (restriction) body.append(restriction);
     body.append(bottom);
     article.append(imageButton, body);
@@ -296,17 +340,55 @@
     const product = state.products.find((item) => item.id === productId);
     if (!product) return;
     state.modalProduct = product;
+    state.modalOfferId = baseOffer(product).id;
     elements.modalCategory.textContent = product.category;
     elements.modalTitle.textContent = product.name;
     elements.modalSku.textContent = `Referencia: ${product.sku}`;
-    elements.modalPrice.textContent = formatPrice(product.price);
     elements.modalTerms.textContent = product.payment_terms || "";
     elements.modalTerms.hidden = !product.payment_terms;
     elements.modalDescription.textContent = product.description || "Consulta disponibilidad y detalles con nuestro equipo.";
     elements.modalQuantity.value = "1";
+    renderOfferOptions(product);
     renderGallery(product);
+    updateModalOffer();
     openLayer("modal");
     elements.modalClose.focus();
+  }
+
+  function selectedModalOffer() {
+    if (!state.modalProduct) return null;
+    return offersFor(state.modalProduct).find((offer) => offer.id === state.modalOfferId) || baseOffer(state.modalProduct);
+  }
+
+  function renderOfferOptions(product) {
+    elements.modalOffers.replaceChildren();
+    offersFor(product).forEach((offer) => {
+      const button = createButton("", `offer-option${offer.id === state.modalOfferId ? " active" : ""}`, () => {
+        state.modalOfferId = offer.id;
+        renderOfferOptions(product);
+        updateModalOffer();
+      });
+      button.setAttribute("aria-pressed", offer.id === state.modalOfferId ? "true" : "false");
+      const heading = document.createElement("strong");
+      heading.textContent = offer.label;
+      const price = document.createElement("span");
+      price.textContent = formatPrice(offer.price);
+      const badge = document.createElement("small");
+      badge.textContent = offer.badge || `${offer.units} unidades`;
+      button.append(heading, price, badge);
+      elements.modalOffers.append(button);
+    });
+  }
+
+  function updateModalOffer() {
+    const offer = selectedModalOffer();
+    if (!offer) return;
+    const quantity = Math.max(1, Number(elements.modalQuantity.value || 1));
+    const totalUnits = offer.units * quantity;
+    elements.modalPrice.textContent = formatPrice(offer.price * quantity);
+    elements.modalImageBadge.textContent = `${offer.units} UNIDADES`;
+    elements.modalOfferSummary.textContent = `${quantity} oferta${quantity === 1 ? "" : "s"} · Recibes ${totalUnits} unidades`;
+    elements.modalAdd.textContent = `Agregar · ${formatPrice(offer.price * quantity)}`;
   }
 
   function renderGallery(product) {
@@ -331,6 +413,7 @@
   function closeModal() {
     elements.productModal.hidden = true;
     state.modalProduct = null;
+    state.modalOfferId = null;
     closeOverlayIfIdle();
   }
 
@@ -360,18 +443,11 @@
 
   function openOrderForm() {
     const entries = cartEntries();
-    const total = entries.reduce((sum, entry) => sum + entry.product.price * entry.quantity, 0);
-    const minimum = Number(CONFIG.minimumOrder || 0);
-    const freeShipping = Number(CONFIG.freeShippingThreshold || 0);
-    if (!entries.length || total < minimum) {
-      showToast(`El pedido mínimo es ${formatPrice(minimum)}`);
-      return;
-    }
+    const total = entries.reduce((sum, entry) => sum + entry.offer.price * entry.quantity, 0);
+    if (!entries.length) return;
     elements.cartDrawer.classList.remove("open");
     elements.cartDrawer.setAttribute("aria-hidden", "true");
-    elements.orderShipping.textContent = total >= freeShipping
-      ? `Tu pedido tiene envío gratis · Total ${formatPrice(total)}`
-      : `Total ${formatPrice(total)} · El valor del envío se cotiza aparte`;
+    elements.orderShipping.textContent = `ENVÍO GRATIS · Total de productos ${formatPrice(total)}`;
     elements.overlay.hidden = false;
     document.body.classList.add("no-scroll");
     elements.orderModal.hidden = false;
@@ -388,38 +464,46 @@
     }
   }
 
-  function addToCart(productId, quantity) {
+  function addToCart(productId, offerId, quantity) {
     const product = state.products.find((item) => item.id === productId);
     if (!product) return;
-    const current = Number(state.cart[productId] || 0);
-    state.cart[productId] = Math.min(99, current + Math.max(1, Number(quantity || 1)));
+    const offer = offersFor(product).find((item) => item.id === offerId) || baseOffer(product);
+    const key = cartKey(product.id, offer.id);
+    const current = Number(state.cart[key] || 0);
+    state.cart[key] = Math.min(99, current + Math.max(1, Number(quantity || 1)));
     saveCart();
     renderCart();
-    showToast(`${product.name} agregado al carrito`);
+    showToast(`${offer.label} de ${product.name} agregado`);
   }
 
-  function setQuantity(productId, quantity) {
+  function setQuantity(key, quantity) {
     const next = Math.max(0, Math.min(99, Number(quantity || 0)));
-    if (next === 0) delete state.cart[productId];
-    else state.cart[productId] = next;
+    if (next === 0) delete state.cart[key];
+    else state.cart[key] = next;
     saveCart();
     renderCart();
   }
 
   function cartEntries() {
     return Object.entries(state.cart)
-      .map(([id, quantity]) => ({ product: state.products.find((item) => item.id === id), quantity: Number(quantity) }))
-      .filter((entry) => entry.product && entry.quantity > 0);
+      .map(([key, quantity]) => {
+        const { productId, offerId } = parseCartKey(key);
+        const product = state.products.find((item) => item.id === productId);
+        const offer = product ? offersFor(product).find((item) => item.id === offerId) : null;
+        return { key, product, offer, quantity: Number(quantity) };
+      })
+      .filter((entry) => entry.product && entry.offer && entry.quantity > 0);
   }
 
   function renderCart() {
     const entries = cartEntries();
-    const units = entries.reduce((sum, entry) => sum + entry.quantity, 0);
-    const total = entries.reduce((sum, entry) => sum + entry.product.price * entry.quantity, 0);
-    elements.cartCount.textContent = String(units);
+    const units = entries.reduce((sum, entry) => sum + entry.offer.units * entry.quantity, 0);
+    const offerCount = entries.reduce((sum, entry) => sum + entry.quantity, 0);
+    const total = entries.reduce((sum, entry) => sum + entry.offer.price * entry.quantity, 0);
+    elements.cartCount.textContent = String(offerCount);
     elements.cartItems.replaceChildren();
 
-    entries.forEach(({ product, quantity }) => {
+    entries.forEach(({ key, product, offer, quantity }) => {
       const item = document.createElement("article");
       item.className = "cart-item";
       const image = document.createElement("img");
@@ -429,17 +513,24 @@
       const name = document.createElement("p");
       name.className = "cart-item-name";
       name.textContent = product.name;
+      const offerName = document.createElement("p");
+      offerName.className = "cart-item-offer";
+      offerName.textContent = offer.label;
+      const received = document.createElement("p");
+      received.className = "cart-item-received";
+      received.textContent = `Recibes ${offer.units * quantity} unidades`;
       const price = document.createElement("p");
       price.className = "cart-item-price";
-      price.textContent = formatPrice(product.price * quantity);
+      price.textContent = formatPrice(offer.price * quantity);
       const controls = document.createElement("div");
       controls.className = "item-quantity";
-      const minus = createButton("−", "", () => setQuantity(product.id, quantity - 1));
+      const minus = createButton("−", "", () => setQuantity(key, quantity - 1));
       const value = document.createElement("span");
       value.textContent = String(quantity);
-      const plus = createButton("＋", "", () => setQuantity(product.id, quantity + 1));
+      value.title = "Número de ofertas";
+      const plus = createButton("＋", "", () => setQuantity(key, quantity + 1));
       controls.append(minus, value, plus);
-      info.append(name, price);
+      info.append(name, offerName, received, price);
       if (product.payment_terms) {
         const terms = document.createElement("p");
         terms.className = "product-restriction";
@@ -447,7 +538,7 @@
         info.append(terms);
       }
       info.append(controls);
-      const remove = createButton("×", "remove-item", () => setQuantity(product.id, 0));
+      const remove = createButton("×", "remove-item", () => setQuantity(key, 0));
       remove.setAttribute("aria-label", `Eliminar ${product.name}`);
       item.append(image, info, remove);
       elements.cartItems.append(item);
@@ -458,30 +549,10 @@
     elements.cartUnits.textContent = `${units} unidad${units === 1 ? "" : "es"}`;
     elements.cartTotal.textContent = formatPrice(total);
     const configured = Boolean(String(CONFIG.whatsapp || "").replace(/\D/g, ""));
-    const minimum = Number(CONFIG.minimumOrder || 0);
-    const freeShipping = Number(CONFIG.freeShippingThreshold || 0);
-    elements.checkoutButton.disabled = !configured || total < minimum;
-    const progress = Math.min(100, freeShipping ? (total / freeShipping) * 100 : 100);
-    elements.shippingProgressFill.style.width = `${progress}%`;
-    elements.shippingProgress.setAttribute("aria-valuenow", String(Math.round(progress)));
-    elements.freeShippingBadge.hidden = total < freeShipping;
-    if (!configured) {
-      elements.shippingProgress.dataset.state = "minimum";
-      elements.progressStatus.textContent = "Configura WhatsApp para habilitar pedidos.";
-      elements.checkoutNote.textContent = "La recepción de pedidos se habilitará después de aprobar el catálogo.";
-    } else if (total < minimum) {
-      elements.shippingProgress.dataset.state = "minimum";
-      elements.progressStatus.textContent = `Te falta ${formatPrice(minimum - total)} para habilitar tu pedido.`;
-      elements.checkoutNote.textContent = `Pedido mínimo ${formatPrice(minimum)} · Agrega ${formatPrice(minimum - total)} para continuar.`;
-    } else if (total < freeShipping) {
-      elements.shippingProgress.dataset.state = "enabled";
-      elements.progressStatus.textContent = `Pedido habilitado · Te faltan ${formatPrice(freeShipping - total)} para envío gratis.`;
-      elements.checkoutNote.textContent = `Pedido habilitado · El envío se cotiza aparte. Agrega ${formatPrice(freeShipping - total)} para envío gratis.`;
-    } else {
-      elements.shippingProgress.dataset.state = "free";
-      elements.progressStatus.textContent = "Completaste las dos metas.";
-      elements.checkoutNote.textContent = `¡Envío gratis! Superaste ${formatPrice(freeShipping)}.`;
-    }
+    elements.checkoutButton.disabled = !configured;
+    elements.checkoutNote.textContent = configured
+      ? "El total corresponde a las ofertas elegidas. El envío es gratis."
+      : "Configura WhatsApp para habilitar pedidos.";
   }
 
   function checkoutWhatsApp(event) {
@@ -495,13 +566,8 @@
     if (!elements.orderForm.reportValidity()) return;
     const entries = cartEntries();
     if (!entries.length) return;
-    const total = entries.reduce((sum, entry) => sum + entry.product.price * entry.quantity, 0);
-    const minimum = Number(CONFIG.minimumOrder || 0);
-    const freeShipping = Number(CONFIG.freeShippingThreshold || 0);
-    if (total < minimum) {
-      showToast(`El pedido mínimo es ${formatPrice(minimum)}`);
-      return;
-    }
+    const total = entries.reduce((sum, entry) => sum + entry.offer.price * entry.quantity, 0);
+    const totalUnits = entries.reduce((sum, entry) => sum + entry.offer.units * entry.quantity, 0);
     const data = new FormData(elements.orderForm);
     const value = (key) => String(data.get(key) || "").trim();
     const neighborhood = value("customerNeighborhood");
@@ -515,15 +581,18 @@
       `Dirección: ${value("customerAddress")}${neighborhood ? ` · ${neighborhood}` : ""}`,
     ];
     if (value("customerNotes")) lines.push(`Indicaciones: ${value("customerNotes")}`);
-    lines.push("", "*Productos*");
-    entries.forEach(({ product, quantity }, index) => {
-      lines.push(`*${index + 1}. ${quantity} x ${product.name}*`);
-      lines.push(`Ref. ${product.sku} · ${formatPrice(product.price)} c/u`);
-      lines.push(`Subtotal: ${formatPrice(product.price * quantity)}`);
+    lines.push("", "*Ofertas elegidas*");
+    entries.forEach(({ product, offer, quantity }, index) => {
+      const received = offer.units * quantity;
+      lines.push(`*${index + 1}. ${product.name}*`);
+      lines.push(`Oferta: ${offer.label}`);
+      lines.push(`Cantidad de ofertas: ${quantity} · Recibe: ${received} unidades`);
+      lines.push(`Precio por oferta: ${formatPrice(offer.price)}`);
+      lines.push(`Subtotal: ${formatPrice(offer.price * quantity)}`);
       if (product.payment_terms) lines.push(`Condición: ${product.payment_terms}`);
     });
-    lines.push("", "--------------------", `*Total: ${formatPrice(total)}*`);
-    lines.push(total >= freeShipping ? "*ENVÍO GRATIS*" : "Envío por cotizar");
+    lines.push("", "--------------------", `*Unidades que recibe: ${totalUnits}*`, `*Total productos: ${formatPrice(total)}*`);
+    lines.push("*ENVÍO GRATIS* · Sin costo adicional");
     lines.push("", "_Confirma disponibilidad y tiempo de entrega, por favor._");
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener,noreferrer");
   }
@@ -576,16 +645,20 @@
     });
     elements.modalMinus.addEventListener("click", () => {
       elements.modalQuantity.value = String(Math.max(1, Number(elements.modalQuantity.value || 1) - 1));
+      updateModalOffer();
     });
     elements.modalPlus.addEventListener("click", () => {
       elements.modalQuantity.value = String(Math.min(99, Number(elements.modalQuantity.value || 1) + 1));
+      updateModalOffer();
     });
     elements.modalQuantity.addEventListener("change", () => {
       elements.modalQuantity.value = String(Math.max(1, Math.min(99, Number(elements.modalQuantity.value || 1))));
+      updateModalOffer();
     });
     elements.modalAdd.addEventListener("click", () => {
-      if (!state.modalProduct) return;
-      addToCart(state.modalProduct.id, Number(elements.modalQuantity.value || 1));
+      const offer = selectedModalOffer();
+      if (!state.modalProduct || !offer) return;
+      addToCart(state.modalProduct.id, offer.id, Number(elements.modalQuantity.value || 1));
       closeModal();
       openLayer("cart");
     });
@@ -609,6 +682,7 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       state.catalog = await response.json();
       state.products = state.catalog.products.filter((product) => product.available !== false && product.price >= 0);
+      migrateCart();
       renderHero();
       renderCategories();
       applyFilters();

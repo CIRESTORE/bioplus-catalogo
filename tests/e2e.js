@@ -36,10 +36,21 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
     await page.locator('#searchInput').fill('Clorofila');
     await page.waitForTimeout(300);
     assert(await page.locator('.product-card').count() === 1, 'La búsqueda de Clorofila debe devolver un producto');
-    await page.locator('.quick-add').click();
-    await page.locator('#cartTrigger').click();
+    assert((await page.locator('.promotion-badge').innerText()).includes('PAGA 1'), 'La tarjeta no comunica Paga 1 · Lleva 2');
+    assert((await page.locator('.shipping-badge').innerText()) === 'ENVÍO GRATIS', 'La tarjeta no comunica envío gratis');
+    await page.locator('.product-title-button').click();
+    await page.waitForSelector('#productModal:not([hidden])');
+    assert(await page.locator('.offer-option').count() === 3, 'Clorofila debe mostrar las tres ofertas verificadas');
+    await page.locator('.offer-option').nth(2).click();
+    assert((await page.locator('#modalImageBadge').innerText()) === '6 UNIDADES', 'La oferta mayor no comunica seis unidades');
+    assert((await page.locator('#modalPrice').innerText()).replace(/\D/g, '') === '213063', 'El precio de 6 unidades de Clorofila no coincide');
+    await page.locator('#modalAdd').click();
     await page.waitForSelector('#cartDrawer.open');
+    await page.waitForTimeout(350);
     assert(await page.locator('.cart-item').count() === 1, 'El carrito no muestra el producto agregado');
+    assert((await page.locator('.cart-item-offer').innerText()).includes('Lleva 6'), 'El carrito no conserva la oferta por cantidad');
+    assert((await page.locator('.cart-item-received').innerText()).includes('6 unidades'), 'El carrito no muestra las unidades recibidas');
+    assert((await page.locator('#cartUnits').innerText()).includes('6 unidades'), 'El resumen no totaliza las unidades recibidas');
     assert(!(await page.locator('#checkoutButton').isDisabled()), 'El pedido debe habilitarse con el WhatsApp oficial configurado');
     await page.screenshot({ path: path.join(artifacts, 'desktop-cart.png'), fullPage: false });
     await page.locator('#checkoutButton').click();
@@ -53,6 +64,11 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
     await page.locator('#orderSubmit').click();
     const orderUrl = await page.evaluate(() => window.__openedUrl);
     assert(orderUrl.startsWith('https://wa.me/573013163588?text='), `El pedido no apunta al WhatsApp oficial: ${orderUrl}`);
+    const orderMessage = decodeURIComponent(orderUrl.split('?text=')[1] || '');
+    assert(orderMessage.includes('Paga 4 · Lleva 6'), 'WhatsApp no incluye la oferta elegida');
+    assert(orderMessage.includes('Recibe: 6 unidades'), 'WhatsApp no incluye las unidades recibidas');
+    assert(orderMessage.includes('ENVÍO GRATIS'), 'WhatsApp no confirma el envío gratis');
+    assert(orderMessage.replace(/\D/g, '').includes('213063'), 'WhatsApp no incluye el precio correcto');
     await page.locator('#orderClose').click();
 
     await page.locator('#searchInput').fill('');
@@ -61,6 +77,8 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
     await page.waitForSelector('#productModal:not([hidden])');
     await page.screenshot({ path: path.join(artifacts, 'desktop-product.png'), fullPage: false });
     await page.locator('#modalClose').click();
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(150);
     await page.screenshot({ path: path.join(artifacts, 'desktop-home.png'), fullPage: false });
 
     const mobile = await browser.newPage({ viewport: { width: 390, height: 844 } });
@@ -75,6 +93,12 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
     await mobile.locator('#productos').scrollIntoViewIfNeeded();
     await mobile.waitForTimeout(200);
     await mobile.screenshot({ path: path.join(artifacts, 'mobile-catalog.png'), fullPage: false });
+    await mobile.locator('.product-title-button').first().click();
+    await mobile.waitForSelector('#productModal:not([hidden])');
+    assert(await mobile.locator('.offer-option').count() >= 1, 'El selector de ofertas no aparece en móvil');
+    await mobile.screenshot({ path: path.join(artifacts, 'mobile-product.png'), fullPage: false });
+    const mobileModalOverflow = await mobile.locator('#productModal').evaluate(el => el.scrollWidth > el.clientWidth);
+    assert(!mobileModalOverflow, 'El modal de producto presenta desbordamiento horizontal en móvil');
 
     report.consoleErrors = [...errors, ...mobileErrors];
     assert(report.consoleErrors.length === 0, `Errores de consola: ${report.consoleErrors.join(' | ')}`);

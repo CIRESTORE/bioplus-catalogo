@@ -4,12 +4,15 @@ Versión de revisión del catálogo virtual BIO PLUS, construida a partir de los
 
 ## Incluye
 
-- 26 presentaciones visibles.
+- 26 presentaciones.
+- Oferta base global **Paga 1 · Lleva 2**.
+- 18 productos/presentaciones con ofertas por cantidad verificadas desde Shopify/Releasit.
+- Envío gratis sin pedido mínimo.
+- Imágenes uniformes con dos unidades sobre fondo blanco.
 - Buscador, categorías y ordenamiento.
-- Fichas de producto y carrito persistente.
-- Diseño móvil y escritorio.
-- Imágenes de producto sobre fondo blanco uniforme.
-- Recepción de pedidos deshabilitada hasta configurar y aprobar el WhatsApp oficial.
+- Carrito por oferta con cálculo de unidades recibidas.
+- Formulario de entrega y pedido por WhatsApp al 301 316 3588.
+- Interfaz adaptable a móvil y escritorio.
 
 ## Desarrollo
 
